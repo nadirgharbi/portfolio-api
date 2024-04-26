@@ -9,8 +9,15 @@
 
 import router from '@adonisjs/core/services/router'
 
-router.get('/', async () => {
-  return {
-    hello: 'world',
-  }
-})
+const VeillesController = () => import('#controllers/veilles_controller')
+
+router
+  .group(() => {
+    // route de test
+    router.get('/test', async () => {
+      return { test: 'test' }
+    })
+
+    router.get('/veilles', [VeillesController, 'veilles'])
+  })
+  .prefix('api')

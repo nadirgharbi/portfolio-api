@@ -18,6 +18,6 @@ router
       return { test: 'test' }
     })
 
-    router.get('/veilles', [VeillesController, 'veilles'])
+    router.get('/veilles', [VeillesController, 'index'])
   })
   .prefix('api')

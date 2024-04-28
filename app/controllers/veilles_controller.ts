@@ -17,17 +17,17 @@ export default class VeillesController {
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) {}
+  // async store({ request }: HttpContext) {}
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  // async show({ params }: HttpContext) {}
 
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
+  // async edit({ params }: HttpContext) {}
 
   /**
    * Handle form submission for the edit action
@@ -37,5 +37,5 @@ export default class VeillesController {
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  // async destroy({ params }: HttpContext) {}
 }

@@ -15,13 +15,16 @@ export default class Veille extends BaseModel {
   declare date_publication: Date
 
   @column()
-  declare auteur: string
+  declare source: string
 
   @column()
   declare lien: string
 
   @column()
   declare image_url: string
+
+  @column()
+  declare category: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

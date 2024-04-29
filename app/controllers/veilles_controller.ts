@@ -25,7 +25,7 @@ export default class VeillesController {
   // async show({ params }: HttpContext) {}
 
   /**
-   * Edit individual record
+   * Edit individual record 
    */
   // async edit({ params }: HttpContext) {}
 

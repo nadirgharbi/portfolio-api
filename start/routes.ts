@@ -21,3 +21,4 @@ router
     router.get('/veilles', [VeillesController, 'index'])
   })
   .prefix('api')
+

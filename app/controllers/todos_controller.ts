@@ -20,7 +20,7 @@ export default class TodosController {
    */
   async store({ request }: HttpContext) {
     const payload = await request.validateUsing(updatePostValidator)
-    console.log(payload)
+    return(payload)
   }
 
   /**
@@ -28,7 +28,7 @@ export default class TodosController {
    */
   async update({ request }: HttpContext) {
     const payload = await request.validateUsing(updatePostValidator)
-    console.log(payload)
+    return(payload)
   }
 
   /**

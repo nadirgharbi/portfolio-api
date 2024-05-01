@@ -8,6 +8,8 @@ export default class extends BaseSchema {
       table.increments('id').notNullable()
       table.string('title', 50).notNullable()
       table.boolean('completed').notNullable()
+      
+      table.integer('userID').unsigned().references('id').inTable('users') // j'ai ajouter ce que tu m'a donner ici
 
       table.datetime('created_at')
       table.datetime('updated_at')

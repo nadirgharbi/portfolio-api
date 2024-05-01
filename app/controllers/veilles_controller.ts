@@ -6,7 +6,7 @@ export default class VeillesController {
    * Display a list of resource
    */
   async index({}: HttpContext) {
-    return Veille.all()
+    return await Veille.all()
   }
 
   /**

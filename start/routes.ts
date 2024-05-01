@@ -21,16 +21,23 @@ router
       return { test: "I'm a test" }
     })
 
-    // Endpoints
+    // Veilles
     router.get('/veilles', [VeillesController, 'index'])
+
+    // Todos
     router.get('/todos', [TodosController, 'index'])
+    router.post('/todos', [TodosController, 'store'])
+    router.put('/todos/:id', [TodosController, 'update'])
+    router.delete('/todos/:id', [TodosController, 'destroy'])
+
+    // Auth
     router.post('auth/register', [AuthController, 'register'])
     router.post('auth/login', [AuthController, 'login'])
     router.post('logout', [AuthController, 'logout']).use(middleware.auth())
 
-    // Recois les informations de l'utilisateur connecté
+    // Current User logged
     router
-      .get('auth/me', async ({ auth, response }) => {
+      .get('auth/user', async ({ auth, response }) => {
         try {
           const user = auth.getUserOrFail()
           return response.ok(user)

@@ -9,7 +9,10 @@ export default class Todo extends BaseModel {
   declare title: string
 
   @column()
-  declare completed: boolean
+  declare completed: number
+
+  @column()
+  declare userID: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

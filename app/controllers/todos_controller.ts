@@ -9,13 +9,23 @@ export default class TodosController {
   async index({ auth }: HttpContext) {
     // return Todo.all()
     try {
-      if (auth && auth.user) {
-        const userID = auth.user.id;
-        const userTodos = await Todo.query().where('userID', userID).exec();
-        return userTodos;
-      }
+      // Vérifier si l'utilisateur est correctement authentifié
+      await auth.authenticate();
+
+      // Récupérer l'utilisateur authentifié
+      const user = auth.user!;
+      
+      // Récupérer l'ID de l'utilisateur
+      const userID = user.id;
+      
+      // Récupérer les tâches de l'utilisateur
+      const userTodos = await Todo.query().where('userID', userID).exec();
+      
+      return userTodos;
     } catch (error) {
       console.log(error);
+      // Gérer les erreurs ici
+      return {}; // Retourner une réponse vide en cas d'erreur
     }
   }
 

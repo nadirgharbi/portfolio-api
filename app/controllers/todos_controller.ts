@@ -13,8 +13,6 @@ export default class TodosController {
         const userID = auth.user.id;
         const userTodos = await Todo.query().where('userID', userID).exec();
         return userTodos;
-      } else {
-        return {};
       }
     } catch (error) {
       console.log(error);

@@ -33,7 +33,7 @@ router
     // Auth
     router.post('auth/register', [AuthController, 'register'])
     router.post('auth/login', [AuthController, 'login'])
-    router.post('logout', [AuthController, 'logout']).use(middleware.auth())
+    router.post('auth/logout', [AuthController, 'logout']).use(middleware.auth())
 
     // Current User logged
     router

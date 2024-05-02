@@ -6,8 +6,19 @@ export default class TodosController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {
-    return await Todo.all()
+  async index({ auth }: HttpContext) {
+    // return Todo.all()
+    try {
+      if (auth && auth.user) {
+        const userID = auth.user.id;
+        const userTodos = await Todo.query().where('userID', userID).exec();
+        return userTodos;
+      } else {
+        return {};
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   /**
@@ -19,11 +30,25 @@ export default class TodosController {
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
+    // try {
+    //   const userId = auth.user!.id // Obtenez l'ID de l'utilisateur connecté
+    //   // const payload = { ...request.only(['title', 'completed']), userID: userId }
+
+    //   // const todo = await Todo.create(payload)
+    //   // return response.created(todo)
+    //   // console.log(payload);
+
+    //   return response.ok("ok")
+    // } catch (error) {
+    //   return response.badRequest(error.messages)
+    // }
     try {
       const payload = await request.validateUsing(createTodoValidator)
       const todo = await Todo.create(payload)
       return response.created(todo)
     } catch (error) {
+      console.log(error)
+
       return response.badRequest(error.messages)
     }
   }
@@ -31,7 +56,29 @@ export default class TodosController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request, response }: HttpContext) {
+  async update({ auth, params, request, response }: HttpContext) {
+    // try {
+    //   const userId = auth.user!.id // Obtenez l'ID de l'utilisateur connecté
+    //   const todoId = params.id
+
+    //   const todo = await Todo.findOrFail(todoId)
+
+    //   if (todo.userID !== userId) {
+    //     return response.forbidden({
+    //       message: "Vous n'êtes pas autorisé à mettre à jour cette tâche.",
+    //     })
+    //   }
+
+    //   const payload = request.only(['title', 'completed'])
+
+    //   todo.merge(payload)
+    //   await todo.save()
+
+    //   return response.ok(todo)
+    // } catch (error) {
+    //   // Gérer les erreurs ici
+    // }
+
     try {
       const todoId = params.id
 
@@ -51,6 +98,22 @@ export default class TodosController {
    * Handle form submission for the delete action
    */
   async destroy({ params, response }: HttpContext) {
+    // try {
+    //   const userId = auth.user!.id // Obtenez l'ID de l'utilisateur connecté
+    //   const todoId = params.id
+
+    //   const todo = await Todo.findOrFail(todoId)
+
+    //   if (todo.userID !== userId) {
+    //     return response.forbidden({ message: "Vous n'êtes pas autorisé à supprimer cette tâche." })
+    //   }
+
+    //   await todo.delete()
+
+    //   return response.noContent()
+    // } catch (error) {
+    //   // Gérer les erreurs ici
+    // }
     try {
       const todoId = params.id
 

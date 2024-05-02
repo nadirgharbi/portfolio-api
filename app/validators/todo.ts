@@ -7,8 +7,7 @@ export const createTodoValidator = vine.compile(
   vine.object({
     title: vine.string().trim(),
     completed: vine.number(),
-    // userID: vine.number() // Ajouter une validation pour l'ID de l'utilisateur
-
+    userID: vine.number() // Ajoutez la validation pour userID
   })
 )
 
@@ -19,7 +18,6 @@ export const updateTodoValidator = vine.compile(
   vine.object({
     title: vine.string().trim().optional(),
     completed: vine.number().optional(),
-    // userID: vine.number().optional() // Ajouter une validation pour l'ID de l'utilisateur
-
+    userID: vine.number().optional() // userID peut être facultatif lors de la mise à jour
   })
 )

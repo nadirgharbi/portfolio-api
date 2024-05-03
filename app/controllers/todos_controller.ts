@@ -25,7 +25,7 @@ export default class TodosController {
     } catch (error) {
       console.log(error);
       // Gérer les erreurs ici
-      return {}; // Retourner une réponse vide en cas d'erreur
+      return {}; // Retourner une réponse vide en cas d'erreur 
     }
   }
 

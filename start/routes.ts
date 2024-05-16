@@ -23,6 +23,7 @@ router
 
     // Veilles
     router.get('/veilles', [VeillesController, 'index'])
+    router.post("/create", [VeillesController, 'create'])
 
     // Todos
     router.get('/todos', [TodosController, 'index'])
